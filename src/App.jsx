@@ -140,6 +140,10 @@ const Signup = ({ onSwitch }) => {
   };
 
   return (
+    <>
+    <h1 style={{ position: "fixed", top: 0, left: 0, background: "red", color: "white", zIndex: 99999 }}>
+      LOGIN COMPONENT LOADED
+    </h1>
    <div className="min-h-screen grid place-items-center bg-gray-100 p-4">
       {/* <AnimatedBackground /> */}
       <div className="relative z-10 bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
@@ -161,6 +165,7 @@ const Signup = ({ onSwitch }) => {
         <div className="mt-6 text-center"><p className="text-gray-600">Already have an account? <button onClick={onSwitch} className="text-indigo-600 hover:text-indigo-700 font-semibold hover:underline transition-all">Login</button></p></div>
       </div>
     </div>
+    </>
   );
 };
 const Dashboard = () => {
