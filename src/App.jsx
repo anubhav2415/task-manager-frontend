@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://task-manager-backend-zimx.onrender.com';
 
 const api = {
   signup: (data) => fetch(`${API_URL}/auth/signup`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).then(r => r.json()),
@@ -166,13 +166,21 @@ const Dashboard = () => {
   const { token } = useAuth();
   const [analytics, setAnalytics] = useState(null);
 
-  useEffect(() => {
-    const fetchAnalytics = async () => {
+ useEffect(() => {
+  if (!token) return;
+
+  const fetchAnalytics = async () => {
+    try {
       const data = await api.getAnalytics(token);
       setAnalytics(data);
-    };
-    fetchAnalytics();
-  }, [token]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  fetchAnalytics();
+}, [token]);
+
 
   if (!analytics) return <div className="flex items-center justify-center h-96"><div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-600"></div></div>;
 
@@ -222,7 +230,11 @@ const TaskList = () => {
   const [filter, setFilter] = useState('all');
   const [formData, setFormData] = useState({ title: '', description: '', status: 'todo', priority: 'medium', assignedTo: '', dueDate: '' });
 
-  useEffect(() => { fetchTasks(); fetchUsers(); }, [token]);
+ useEffect(() => {
+  if (!token) return;
+  fetchTasks();
+  fetchUsers();
+}, [token]);
 
   const fetchTasks = async () => { const data = await api.getTasks(token); setTasks(data); };
   const fetchUsers = async () => { const data = await api.getUsers(token); setUsers(data); };
@@ -312,7 +324,16 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('dashboard');
   const { user, logout } = useAuth();
 
-  if (!user) return showSignup ? <Signup onSwitch={() => setShowSignup(false)} /> : <Login onSwitch={() => setShowSignup(true)} />;
+ if (!user) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white text-black">
+      {showSignup
+        ? <Signup onSwitch={() => setShowSignup(false)} />
+        : <Login onSwitch={() => setShowSignup(true)} />}
+    </div>
+  );
+}
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
