@@ -204,3 +204,7 @@ input:focus, textarea:focus, select:focus {
     transform: scale(1);
   }
 }
+svg {
+  max-width: 100%;
+  height: auto;
+}
