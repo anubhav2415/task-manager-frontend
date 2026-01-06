@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-const API_URL = 'https://task-manager-backend-zimx.onrender.com';
+const API_URL = 'https://task-manager-backend-zimx.onrender.comi';
 
 const api = {
   signup: (data) => fetch(`${API_URL}/auth/signup`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).then(r => r.json()),
@@ -62,13 +62,12 @@ const AuthProvider = ({ children }) => {
 const useAuth = () => useContext(AuthContext);
 
 const AnimatedBackground = () => (
-  <div className="fixed inset-0 z-0 pointer-events-none">
-    <div className="absolute top-0 -left-4 w-56 h-56 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-    <div className="absolute top-0 -right-4 w-56 h-56 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-    <div className="absolute -bottom-8 left-20 w-56 h-56 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+  <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+    <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+    <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
   </div>
 );
-
 
 const Login = ({ onSwitch }) => {
   const [email, setEmail] = useState('');
@@ -86,17 +85,12 @@ const Login = ({ onSwitch }) => {
   };
 
   return (
-    <div className="min-h-screen grid place-items-center bg-gray-100 p-4">
-     {/* <AnimatedBackground /> */}
-      <div className="relative z-10 bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center p-4 relative overflow-hidden">
+      <AnimatedBackground />
+      <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 w-full max-w-md transform hover:scale-105 transition-all duration-300 border border-white/20">
         <div className="text-center mb-8">
           <div className="inline-block p-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl mb-4 shadow-lg transform hover:rotate-12 transition-transform">
-           <svg
-  className="w-12 h-12 text-white flex-shrink-0"
-  viewBox="0 0 24 24"
-  width="48"
-  height="48"
-/><svg/>
+            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
           </div>
           <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Welcome Back</h2>
           <p className="text-gray-600 mt-2">Login to manage your tasks</p>
@@ -106,24 +100,14 @@ const Login = ({ onSwitch }) => {
             <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
             <div className="relative">
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 pl-11 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all outline-none" placeholder="you@example.com" />
-              <svg
-  className="w-12 h-12 text-white flex-shrink-0"
-  viewBox="0 0 24 24"
-  width="48"
-  height="48"
-/><svg/>
+              <svg className="absolute left-3 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-purple-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" /></svg>
             </div>
           </div>
           <div className="group">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
             <div className="relative">
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSubmit()} className="w-full px-4 py-3 pl-11 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all outline-none" placeholder="••••••••" />
-             <svg
-  className="w-12 h-12 text-white flex-shrink-0"
-  viewBox="0 0 24 24"
-  width="48"
-  height="48"
-/><svg/>
+              <svg className="absolute left-3 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-purple-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
             </div>
           </div>
           {error && <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg animate-shake"><p className="text-red-700 text-sm font-medium">{error}</p></div>}
@@ -155,22 +139,12 @@ const Signup = ({ onSwitch }) => {
   };
 
   return (
-    <>
-    <h1 style={{ position: "fixed", top: 0, left: 0, background: "red", color: "white", zIndex: 99999 }}>
-      LOGIN COMPONENT LOADED
-    </h1>
-   <div className="min-h-screen grid place-items-center bg-gray-100 p-4">
-      {/* <AnimatedBackground /> */}
-      <div className="relative z-10 bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 flex items-center justify-center p-4 relative overflow-hidden">
+      <AnimatedBackground />
+      <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 w-full max-w-md transform hover:scale-105 transition-all duration-300 border border-white/20">
         <div className="text-center mb-8">
           <div className="inline-block p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mb-4 shadow-lg transform hover:rotate-12 transition-transform">
-            <svg
-  className="w-12 h-12 text-white flex-shrink-0"
-  viewBox="0 0 24 24"
-  width="48"
-  height="48"
-/><svg/>
-
+            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" /></svg>
           </div>
           <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Create Account</h2>
           <p className="text-gray-600 mt-2">Join us and start managing tasks</p>
@@ -186,28 +160,19 @@ const Signup = ({ onSwitch }) => {
         <div className="mt-6 text-center"><p className="text-gray-600">Already have an account? <button onClick={onSwitch} className="text-indigo-600 hover:text-indigo-700 font-semibold hover:underline transition-all">Login</button></p></div>
       </div>
     </div>
-    </>
   );
 };
 const Dashboard = () => {
   const { token } = useAuth();
   const [analytics, setAnalytics] = useState(null);
 
- useEffect(() => {
-  if (!token) return;
-
-  const fetchAnalytics = async () => {
-    try {
+  useEffect(() => {
+    const fetchAnalytics = async () => {
       const data = await api.getAnalytics(token);
       setAnalytics(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  fetchAnalytics();
-}, [token]);
-
+    };
+    fetchAnalytics();
+  }, [token]);
 
   if (!analytics) return <div className="flex items-center justify-center h-96"><div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-600"></div></div>;
 
@@ -257,11 +222,7 @@ const TaskList = () => {
   const [filter, setFilter] = useState('all');
   const [formData, setFormData] = useState({ title: '', description: '', status: 'todo', priority: 'medium', assignedTo: '', dueDate: '' });
 
- useEffect(() => {
-  if (!token) return;
-  fetchTasks();
-  fetchUsers();
-}, [token]);
+  useEffect(() => { fetchTasks(); fetchUsers(); }, [token]);
 
   const fetchTasks = async () => { const data = await api.getTasks(token); setTasks(data); };
   const fetchUsers = async () => { const data = await api.getUsers(token); setUsers(data); };
@@ -351,16 +312,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('dashboard');
   const { user, logout } = useAuth();
 
- if (!user) {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-white text-black">
-      {showSignup
-        ? <Signup onSwitch={() => setShowSignup(false)} />
-        : <Login onSwitch={() => setShowSignup(true)} />}
-    </div>
-  );
-}
-
+  if (!user) return showSignup ? <Signup onSwitch={() => setShowSignup(false)} /> : <Login onSwitch={() => setShowSignup(true)} />;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
