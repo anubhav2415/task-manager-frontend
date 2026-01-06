@@ -91,7 +91,12 @@ const Login = ({ onSwitch }) => {
       <div className="relative z-10 bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-block p-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl mb-4 shadow-lg transform hover:rotate-12 transition-transform">
-            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+           <svg
+  className="w-12 h-12 text-white flex-shrink-0"
+  viewBox="0 0 24 24"
+  width="48"
+  height="48"
+/><svg/>
           </div>
           <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Welcome Back</h2>
           <p className="text-gray-600 mt-2">Login to manage your tasks</p>
@@ -101,14 +106,24 @@ const Login = ({ onSwitch }) => {
             <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
             <div className="relative">
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 pl-11 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all outline-none" placeholder="you@example.com" />
-              <svg className="absolute left-3 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-purple-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" /></svg>
+              <svg
+  className="w-12 h-12 text-white flex-shrink-0"
+  viewBox="0 0 24 24"
+  width="48"
+  height="48"
+/><svg/>
             </div>
           </div>
           <div className="group">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
             <div className="relative">
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSubmit()} className="w-full px-4 py-3 pl-11 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all outline-none" placeholder="••••••••" />
-              <svg className="absolute left-3 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-purple-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+             <svg
+  className="w-12 h-12 text-white flex-shrink-0"
+  viewBox="0 0 24 24"
+  width="48"
+  height="48"
+/><svg/>
             </div>
           </div>
           {error && <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg animate-shake"><p className="text-red-700 text-sm font-medium">{error}</p></div>}
